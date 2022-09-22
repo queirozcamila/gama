@@ -12,5 +12,5 @@ public interface IServiceCliente {
     public Cliente criarNovo(Cliente novo);
     public List<Cliente> listar();
     public Optional<Cliente> detalhar(Integer id);
-    public Cliente alterarDados(Cliente dados);
+    public Cliente alterarDados(Integer id, Cliente dados);
 }

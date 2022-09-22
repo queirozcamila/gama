@@ -4,8 +4,6 @@ import com.malalayousafzai.malala.DAO.ClienteDAO;
 import com.malalayousafzai.malala.model.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,11 +31,20 @@ public class ServiceClienteImpl implements IServiceCliente {
         return clienteDao.findAll();
     }
 
-    //Retificar o metodo abaixo
     @Override
-    public Cliente alterarDados(Cliente dados){
-        if (dados.getId() != null && dados.getNome() != null){
-            return clienteDao.save(dados);
+    public Cliente alterarDados(Integer id, Cliente dados){
+        Optional<Cliente> clienteVerificacao = clienteDao.findById(id);
+        if (clienteVerificacao.isPresent()){
+            Cliente clienteAtualizado = clienteVerificacao.get();
+            clienteAtualizado.setNome(dados.getNome());
+            clienteAtualizado.setEmail(dados.getEmail());
+            clienteAtualizado.setSenha(dados.getSenha());
+            clienteAtualizado.setTelefone(dados.getTelefone());
+            clienteAtualizado.setNomeUsuario(dados.getNomeUsuario());
+            clienteAtualizado.setNumeroCartao(dados.getNumeroCartao());
+            clienteAtualizado.setValidadeCartao(dados.getValidadeCartao());
+            clienteAtualizado.setCodigoDeSeguranca(dados.getCodigoDeSeguranca());
+            return clienteDao.save(clienteAtualizado);
         }
         return null;
     }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,12 +23,10 @@ public class ClienteController {
     @Autowired
     private ServiceClienteImpl serviceClienteImpl;
 
-
     @GetMapping
     public List<ClienteDto> listar(){
        return ClienteDto.converter(serviceClienteImpl.listar());
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<Optional> detalhar(@PathVariable Integer id){
@@ -49,12 +46,11 @@ public class ClienteController {
         return ResponseEntity.badRequest().build();
     }
 
-    //Retificar o put
-    @PutMapping
-    public ResponseEntity<Cliente> alterar(@RequestBody Cliente dados){
-        Cliente resp = serviceClienteImpl.alterarDados(dados);
+    @PutMapping("/{id}")
+    public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Cliente dados){
+        Cliente resp = serviceClienteImpl.alterarDados(id, dados);
         if(resp != null){
-            return ResponseEntity.ok(resp);
+            return ResponseEntity.ok("Atualizado com sucesso!");
         }
         return ResponseEntity.badRequest().build();
     }
