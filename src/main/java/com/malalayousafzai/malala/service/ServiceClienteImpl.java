@@ -49,4 +49,8 @@ public class ServiceClienteImpl implements IServiceCliente {
         return null;
     }
 
+    public void remover(Integer id){
+        clienteDao.deleteById(id);
+    }
+
 }

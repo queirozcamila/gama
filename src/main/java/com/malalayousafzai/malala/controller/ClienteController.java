@@ -6,6 +6,7 @@ import com.malalayousafzai.malala.model.Cliente;
 import com.malalayousafzai.malala.service.ServiceClienteImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,5 +54,10 @@ public class ClienteController {
             return ResponseEntity.ok("Atualizado com sucesso!");
         }
         return ResponseEntity.badRequest().build();
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> remover(@PathVariable Integer id){
+        serviceClienteImpl.remover(id);
+        return ResponseEntity.ok().build();
     }
 }
