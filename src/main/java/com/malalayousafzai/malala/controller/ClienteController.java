@@ -1,5 +1,6 @@
 package com.malalayousafzai.malala.controller;
 
+import com.malalayousafzai.malala.controller.Dto.DetalhesClienteDto;
 import com.malalayousafzai.malala.model.Cliente;
 import com.malalayousafzai.malala.service.ServiceClienteImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,14 @@ public class ClienteController {
         return serviceClienteImpl.listar();
     }
 
-    //Tratar os casos de retorno null
+
     @GetMapping("/{id}")
-    public Optional<Cliente> detalhar(@PathVariable Integer id){
-        return serviceClienteImpl.detalhar(id);
+    public ResponseEntity<Optional> detalhar(@PathVariable Integer id){
+        Optional<Cliente> resp = serviceClienteImpl.detalhar(id);
+        if(resp.isPresent()){
+            return  ResponseEntity.ok(resp.map(DetalhesClienteDto::new));
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     @PostMapping
