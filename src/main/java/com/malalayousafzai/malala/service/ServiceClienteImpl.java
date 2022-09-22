@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,8 +29,8 @@ public class ServiceClienteImpl implements IServiceCliente {
     }
 
     @Override
-    public ArrayList<Cliente> listar(){
-        return (ArrayList<Cliente>) clienteDao.findAll();
+    public List<Cliente> listar(){
+        return clienteDao.findAll();
     }
 
     //Retificar o metodo abaixo

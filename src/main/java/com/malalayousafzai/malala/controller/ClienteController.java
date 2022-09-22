@@ -1,5 +1,6 @@
 package com.malalayousafzai.malala.controller;
 
+import com.malalayousafzai.malala.controller.Dto.ClienteDto;
 import com.malalayousafzai.malala.controller.Dto.DetalhesClienteDto;
 import com.malalayousafzai.malala.model.Cliente;
 import com.malalayousafzai.malala.service.ServiceClienteImpl;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -24,8 +26,8 @@ public class ClienteController {
 
 
     @GetMapping
-    public ArrayList<Cliente> listar(Cliente cLiente){
-        return serviceClienteImpl.listar();
+    public List<ClienteDto> listar(){
+       return ClienteDto.converter(serviceClienteImpl.listar());
     }
 
 
@@ -39,10 +41,10 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> cadastrar(@RequestBody Cliente novo){
+    public ResponseEntity<String> cadastrar(@RequestBody Cliente novo){
         Cliente resp = serviceClienteImpl.criarNovo(novo);
         if(resp != null){
-            return ResponseEntity.ok(resp);
+            return ResponseEntity.ok("Cadastrado com sucesso!");
         }
         return ResponseEntity.badRequest().build();
     }
