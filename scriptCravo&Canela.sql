@@ -5,9 +5,9 @@ CREATE SCHEMA IF NOT EXISTS `cravo_canela` DEFAULT CHARACTER SET utf8 ;
 USE `cravo_canela` ;
 
 -- -----------------------------------------------------
--- Table `cravo_canela`.`cliente`
+-- Table `cravo_canela`.`perfil_cliente`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cravo_canela`.`cliente` (
+CREATE TABLE IF NOT EXISTS `cravo_canela`.`perfil_cliente` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `email` VARCHAR(50) NOT NULL,
@@ -17,7 +17,6 @@ CREATE TABLE IF NOT EXISTS `cravo_canela`.`cliente` (
   `cpf` VARCHAR(15) NOT NULL,
   `status_conta` VARCHAR(10) NOT NULL,
   `data_login` VARCHAR(10) NOT NULL,
-  `certificado` LONGBLOB NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC) VISIBLE,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
@@ -41,25 +40,21 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `cravo_canela`.`visualizacao_video`
+-- Table `cravo_canela`.`historico`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cravo_canela`.`visualizacao_video` (
-  `id_acesso` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `cravo_canela`.`historico` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `data_visualizacao` VARCHAR(10) NOT NULL,
   `cliente_id` INT NOT NULL,
   `video_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
   INDEX `fk_cliente_has_video_video1_idx` (`video_id` ASC) VISIBLE,
   INDEX `fk_cliente_has_video_cliente_idx` (`cliente_id` ASC) VISIBLE,
-  PRIMARY KEY (`id_acesso`),
   CONSTRAINT `fk_cliente_has_video_cliente`
     FOREIGN KEY (`cliente_id`)
-    REFERENCES `cravo_canela`.`cliente` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `cravo_canela`.`perfil_cliente` (`id`),
   CONSTRAINT `fk_cliente_has_video_video1`
     FOREIGN KEY (`video_id`)
-    REFERENCES `cravo_canela`.`video` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `cravo_canela`.`video` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
