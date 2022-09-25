@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cliente {
@@ -12,12 +13,25 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nome;
     private String email;
     private String senha;
     private String telefone;
+
     @Column(name = "nome_usuario")
     private String nomeUsuario;
+
+    @OneToOne
+    private Historico historico;
+
+    public Historico getHistorico() {
+        return historico;
+    }
+
+    public void setHistorico(Historico historico) {
+        this.historico = historico;
+    }
 
     @Override
     public boolean equals(Object obj) {

@@ -5,20 +5,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Video {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer id;
-    public String titulo;
-    public String descricao;
-    public String video;
+    private Integer id;
+
+    private String titulo;
+    private String descricao;
+    private String video;
+
     @Column(name = "total_acessos")
-    public Integer totalAcessos;
+    private Integer totalAcessos;
+
     @Column(name = "nota_video")
-    public String notaVideo;
+    private String notaVideo;
+
+    public Historico getHistorico() {
+        return historico;
+    }
+
+    public void setHistorico(Historico historico) {
+        this.historico = historico;
+    }
+
+    @ManyToOne
+    private Historico historico;
 
     public Integer getId() {
         return id;
