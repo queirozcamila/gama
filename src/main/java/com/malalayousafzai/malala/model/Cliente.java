@@ -43,6 +43,7 @@ public class Cliente {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
+
     public Integer getId() {
         return id;
     }
@@ -90,28 +91,6 @@ public class Cliente {
     public void setNomeUsuario(String nomeUsuario) {
         this.nomeUsuario = nomeUsuario;
     }
-
-    public String getNumeroCartao() {
-        return numeroCartao;
-    }
-
-    public void setNumeroCartao(String numeroCartao) {
-        this.numeroCartao = numeroCartao;
-    }
-
-    public String getValidadeCartao() {
-        return validadeCartao;
-    }
-
-    public void setValidadeCartao(String validadeCartao) {
-        this.validadeCartao = validadeCartao;
-    }
-
-    public String getCodigoDeSeguranca() {
-        return codigoDeSeguranca;
-    }
-
-    public void setCodigoDeSeguranca(String codigoDeSeguranca) {
-        this.codigoDeSeguranca = codigoDeSeguranca;
-    }
 }
+
+

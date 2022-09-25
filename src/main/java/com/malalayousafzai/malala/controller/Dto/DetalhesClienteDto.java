@@ -22,9 +22,7 @@ public class DetalhesClienteDto {
         this.senha = cliente.getSenha();
         this.telefone = cliente.getTelefone();
         this.nomeUsuario = cliente.getNomeUsuario();
-        this.numeroCartao = cliente.getNumeroCartao();
-        this.validadeCartao = cliente.getValidadeCartao();
-        this.codigoDeSeguranca = cliente.getCodigoDeSeguranca();
+
     }
 
     public Integer getId() {
@@ -51,15 +49,4 @@ public class DetalhesClienteDto {
         return nomeUsuario;
     }
 
-    public String getNumeroCartao() {
-        return numeroCartao;
-    }
-
-    public String getValidadeCartao() {
-        return validadeCartao;
-    }
-
-    public String getCodigoDeSeguranca() {
-        return codigoDeSeguranca;
-    }
 }

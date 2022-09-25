@@ -41,9 +41,6 @@ public class ServiceClienteImpl implements IServiceCliente {
             clienteAtualizado.setSenha(dados.getSenha());
             clienteAtualizado.setTelefone(dados.getTelefone());
             clienteAtualizado.setNomeUsuario(dados.getNomeUsuario());
-            clienteAtualizado.setNumeroCartao(dados.getNumeroCartao());
-            clienteAtualizado.setValidadeCartao(dados.getValidadeCartao());
-            clienteAtualizado.setCodigoDeSeguranca(dados.getCodigoDeSeguranca());
             return clienteDao.save(clienteAtualizado);
         }
         return null;

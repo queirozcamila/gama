@@ -20,6 +20,54 @@ public class Video {
     @Column(name = "nota_video")
     public String notaVideo;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
+
+    public Integer getTotalAcessos() {
+        return totalAcessos;
+    }
+
+    public void setTotalAcessos(Integer totalAcessos) {
+        this.totalAcessos = totalAcessos;
+    }
+
+    public String getNotaVideo() {
+        return notaVideo;
+    }
+
+    public void setNotaVideo(String notaVideo) {
+        this.notaVideo = notaVideo;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
