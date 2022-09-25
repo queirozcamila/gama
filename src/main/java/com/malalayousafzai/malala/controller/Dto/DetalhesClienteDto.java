@@ -11,9 +11,7 @@ public class DetalhesClienteDto {
     private String senha;
     private String telefone;
     private String nomeUsuario;
-    private String numeroCartao;
-    private String validadeCartao;
-    private String codigoDeSeguranca;
+
 
     public DetalhesClienteDto(Cliente cliente){
         this.id = cliente.getId();
