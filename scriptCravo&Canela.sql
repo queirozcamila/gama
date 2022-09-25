@@ -29,7 +29,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cravo_canela`.`video` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `titulo` VARCHAR(45) NOT NULL,
+  `titulo` TEXT NOT NULL,
   `descricao` TEXT NOT NULL,
   `video` TEXT NOT NULL,
   `total_acessos` INT NULL DEFAULT NULL,

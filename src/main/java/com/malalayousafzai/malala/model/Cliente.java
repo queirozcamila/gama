@@ -18,12 +18,6 @@ public class Cliente {
     private String telefone;
     @Column(name = "nome_usuario")
     private String nomeUsuario;
-    @Column(name = "num_cartao")
-    private String numeroCartao;
-    @Column(name = "val_cartao")
-    private String validadeCartao;
-    @Column(name = "cod_seguranca")
-    private String codigoDeSeguranca;
 
     @Override
     public boolean equals(Object obj) {
