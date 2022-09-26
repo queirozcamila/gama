@@ -8,6 +8,8 @@ public interface IServiceVideo  {
 
     public List<Video> listar();
     public Optional<Video> detalhar(Integer id);
+
+    public Video concluir(Integer id);
     public Video classificar(Integer id, Video dados);
 }
 

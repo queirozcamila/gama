@@ -5,7 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import java.util.List;
 
 @Entity
 public class Cliente {
@@ -22,16 +26,12 @@ public class Cliente {
     @Column(name = "nome_usuario")
     private String nomeUsuario;
 
-    @OneToOne
-    private Historico historico;
+    @ManyToMany
+    @JoinTable(name="historico", joinColumns =
+            {@JoinColumn(name="cliente_id")}, inverseJoinColumns =
+            {@JoinColumn(name = "video_id")})
+    private List<Video> videos;
 
-    public Historico getHistorico() {
-        return historico;
-    }
-
-    public void setHistorico(Historico historico) {
-        this.historico = historico;
-    }
 
     @Override
     public boolean equals(Object obj) {
@@ -56,6 +56,14 @@ public class Cliente {
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
+    }
+
+    public List<Video> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<Video> videos) {
+        this.videos = videos;
     }
 
     public Integer getId() {

@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import java.util.List;
 
 @Entity
 public class Video {
@@ -24,16 +27,15 @@ public class Video {
     @Column(name = "nota_video")
     private String notaVideo;
 
-    public Historico getHistorico() {
-        return historico;
+     private boolean concluido;
+
+    public boolean isConcluido() {
+        return concluido;
     }
 
-    public void setHistorico(Historico historico) {
-        this.historico = historico;
+    public void setConcluido(boolean concluido) {
+        this.concluido = concluido;
     }
-
-    @ManyToOne
-    private Historico historico;
 
     public Integer getId() {
         return id;

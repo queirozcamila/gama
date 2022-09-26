@@ -1,7 +1,6 @@
 package com.malalayousafzai.malala.controller;
 
-import com.malalayousafzai.malala.controller.Dto.DetalhesClienteDto;
-import com.malalayousafzai.malala.model.Cliente;
+
 import com.malalayousafzai.malala.model.Video;
 import com.malalayousafzai.malala.service.ServiceVideoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +37,16 @@ public class VideoController {
         }
         return ResponseEntity.badRequest().build();
     }
+
+    @GetMapping("/{id}/concluido")
+    public ResponseEntity<String> concluir(@PathVariable Integer id){
+        Video resp = serviceVideoImpl.concluir(id);
+        if(resp != null){
+            return ResponseEntity.ok("Parabéns! Você concluiu este curso!");
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
 
     @PutMapping ("/{id}")
     public ResponseEntity<String> classificar(@PathVariable Integer id, @RequestBody Video dados){
