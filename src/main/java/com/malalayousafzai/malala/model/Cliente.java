@@ -14,7 +14,6 @@ import javax.persistence.OneToOne;
 import java.util.List;
 
 @Entity
-//@NamedQuery(name = "Cliente.findyByNomeUsuario", query = "select c from Cliente where c.nomeUsuario = :nomeUsuario")
 public class Cliente {
 
     @Id
