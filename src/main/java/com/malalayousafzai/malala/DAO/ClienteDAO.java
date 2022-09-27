@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClienteDAO extends JpaRepository<Cliente, Integer> {
 
-    @Query("from Cliente where nomeUsuario = :nomeUsuario")
-    public Cliente findByNomeUsuario(String nomeUsuario);
+    @Query("from Cliente where nomeUsuario = :nomeUsuario and senha = :senha")
+    public Cliente findByNomeUsuarioAndSenha(String nomeUsuario, String senha);
 
 }

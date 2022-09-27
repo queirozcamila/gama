@@ -13,8 +13,8 @@ public class ServiceClienteImpl implements IServiceCliente {
      @Autowired
     private ClienteDAO clienteDao;
 
-     public Cliente findByNomeUsuario(String nomeUsuario){
-        Cliente cliente = clienteDao.findByNomeUsuario(nomeUsuario);
+     public Cliente findByNomeUsuarioAndSenha(String nomeUsuario, String senha){
+        Cliente cliente = clienteDao.findByNomeUsuarioAndSenha(nomeUsuario, senha);
         return cliente;
 
      }

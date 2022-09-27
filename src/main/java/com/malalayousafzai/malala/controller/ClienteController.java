@@ -6,7 +6,6 @@ import com.malalayousafzai.malala.model.Cliente;
 import com.malalayousafzai.malala.service.ServiceClienteImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +42,8 @@ public class ClienteController {
     @PostMapping("/login")
     public ResponseEntity<String> login(Cliente dados){
         String nomeUsuarioProcurar = dados.getNomeUsuario();
-        Cliente resp = serviceClienteImpl.findByNomeUsuario(nomeUsuarioProcurar);
+        String senhaProcurar = dados.getSenha();
+        Cliente resp = serviceClienteImpl.findByNomeUsuarioAndSenha(nomeUsuarioProcurar, senhaProcurar);
         if(resp != null){
             return ResponseEntity.ok("Logado com sucesso!");
         }
