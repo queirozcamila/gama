@@ -10,8 +10,14 @@ import java.util.Optional;
 @Service
 public class ServiceClienteImpl implements IServiceCliente {
 
-    @Autowired
+     @Autowired
     private ClienteDAO clienteDao;
+
+     public Cliente findByNomeUsuario(String nomeUsuario){
+        Cliente cliente = clienteDao.findByNomeUsuario(nomeUsuario);
+        return cliente;
+
+     }
 
     @Override
     public Cliente criarNovo(Cliente novo){

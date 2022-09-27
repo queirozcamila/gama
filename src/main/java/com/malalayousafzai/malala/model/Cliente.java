@@ -1,5 +1,7 @@
 package com.malalayousafzai.malala.model;
 
+import org.hibernate.annotations.NamedQuery;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import javax.persistence.OneToOne;
 import java.util.List;
 
 @Entity
+//@NamedQuery(name = "Cliente.findyByNomeUsuario", query = "select c from Cliente where c.nomeUsuario = :nomeUsuario")
 public class Cliente {
 
     @Id
