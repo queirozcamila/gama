@@ -28,29 +28,28 @@ public class ServiceVideoImpl implements IServiceVideo  {
     @Override
     public Video concluir(Integer id){
         Optional<Video> videoVerificacao = videoDao.findById(id);
+
         if(videoVerificacao.isPresent()) {
-            Video videoClassificado = videoVerificacao.get();
+            Video videoConcluido = videoVerificacao.get();
+            videoConcluido.setConcluido(true);
             //Como pegar o id do cliente e inserir esse video na List<Video> videos desse cliente?.
-          }
+
+            //Historico  historico = new Historico();
+            //videoClassificado.setHistorico(historico);
+            //Historico historico = videoClassificado.getHistorico();
+            //historico.setVideos();
+        }
         return null;
     }
-
 
     //ESSE TRECHO AQUIIII!
     @Override
     public Video classificar(Integer id, Video dados){
        Optional<Video> videoVerificacao = videoDao.findById(id);
-       if(videoVerificacao.isPresent()){
 
+       if(videoVerificacao.isPresent()){
            Video videoClassificado = videoVerificacao.get();
            videoClassificado.setNotaVideo(dados.getNotaVideo());
-           videoClassificado.setConcluido(true);
-
-           //Historico  historico = new Historico();
-           //videoClassificado.setHistorico(historico);
-           //Historico historico = videoClassificado.getHistorico();
-           //historico.setVideos();
-
            return videoDao.save(videoClassificado);
        }
        return null;
