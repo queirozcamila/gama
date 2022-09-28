@@ -52,17 +52,18 @@ public class ServiceClienteImpl implements IServiceCliente {
             clienteAtualizado.setSenha(dados.getSenha());
             clienteAtualizado.setTelefone(dados.getTelefone());
             clienteAtualizado.setNomeUsuario(dados.getNomeUsuario());
+            clienteAtualizado.setCpf(dados.getCpf());
             return clienteDao.save(clienteAtualizado);
         }
         return null;
     }
 
-    public List<Video> adicionaVideosNoCliente(Integer id){
-         Optional<Cliente> cliente = clienteDao.findById(id);
-
-         return null;
-
-    }
+//    public List<Video> adicionaVideosNoCliente(Integer id){
+//         Optional<Cliente> cliente = clienteDao.findById(id);
+//
+//         return null;
+//
+//    }
 
     public void remover(Integer id){
         clienteDao.deleteById(id);

@@ -69,17 +69,15 @@ public class ClienteController {
         return ResponseEntity.badRequest().build();
     }
 
-    @GetMapping("/{id}/videos")
-    public List<Video> adicionaVideosConcluidos(@PathVariable Integer id){
-        List<Video> videos = serviceClienteImpl.adicionaVideosNoCliente(id);
-
-        if(videos != null){
-            return videos;
-        }
-        return null;
-    }
-
-
+//    @GetMapping("/{id}/videos")
+//    public List<Video> adicionaVideosConcluidos(@PathVariable Integer id){
+//        List<Video> videos = serviceClienteImpl.adicionaVideosNoCliente(id);
+//
+//        if(videos != null){
+//            return videos;
+//        }
+//        return null;
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> remover(@PathVariable Integer id){
