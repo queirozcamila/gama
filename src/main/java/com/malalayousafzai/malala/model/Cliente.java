@@ -1,7 +1,7 @@
 package com.malalayousafzai.malala.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.NamedQuery;
+import com.malalayousafzai.malala.controller.VideoController;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,9 +31,17 @@ public class Cliente {
     @Column(name = "nome_usuario")
     private String nomeUsuario;
 
+    //USA QUAL DOS DOIS ABAIXO??
+
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("clientes")
-    private List<Historico> historicos;
+    @JsonIgnoreProperties("cliente")
+    private List<Historico> historicos = new ArrayList<>();
+
+//    @ManyToMany
+//    @JoinTable(name = "historico",
+//            joinColumns = @JoinColumn(name = "cliente_id"),
+//            inverseJoinColumns = @JoinColumn(name = "video_id"))
+//    private List<Video> videos;
 
     public List<Historico> getHistoricos() {
         return historicos;
@@ -42,6 +50,15 @@ public class Cliente {
     public void setHistoricos(List<Historico> historicos) {
         this.historicos = historicos;
     }
+
+//
+//    public List<Video> getVideos() {
+//        return videos;
+//    }
+//
+//    public void setVideos(List<Video> videos) {
+//        this.videos = videos;
+//    }
 
     @Override
     public boolean equals(Object obj) {

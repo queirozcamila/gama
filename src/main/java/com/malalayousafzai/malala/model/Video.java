@@ -1,13 +1,14 @@
 package com.malalayousafzai.malala.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
@@ -27,8 +28,7 @@ public class Video {
     @Column(name = "nota_video")
     private String notaVideo;
 
-     private boolean concluido;
-
+    private boolean concluido;
     public boolean isConcluido() {
         return concluido;
     }

@@ -1,5 +1,7 @@
 package com.malalayousafzai.malala.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +23,7 @@ public class Historico {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @JsonIgnoreProperties("historicos")
     private Cliente cliente;
 
     @ManyToOne

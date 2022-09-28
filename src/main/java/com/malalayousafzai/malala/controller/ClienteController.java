@@ -3,6 +3,7 @@ package com.malalayousafzai.malala.controller;
 import com.malalayousafzai.malala.controller.Dto.ClienteDto;
 import com.malalayousafzai.malala.controller.Dto.DetalhesClienteDto;
 import com.malalayousafzai.malala.model.Cliente;
+import com.malalayousafzai.malala.model.Video;
 import com.malalayousafzai.malala.service.ServiceClienteImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -67,6 +68,19 @@ public class ClienteController {
         }
         return ResponseEntity.badRequest().build();
     }
+
+    @GetMapping("/{id}/videos")
+    public List<Video> adicionaVideosConcluidos(@PathVariable Integer id){
+        List<Video> videos = serviceClienteImpl.adicionaVideosNoCliente(id);
+
+        if(videos != null){
+            return videos;
+        }
+        return null;
+    }
+
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> remover(@PathVariable Integer id){
         serviceClienteImpl.remover(id);

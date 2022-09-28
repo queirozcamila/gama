@@ -1,7 +1,6 @@
 package com.malalayousafzai.malala.service;
 
 import com.malalayousafzai.malala.DAO.VideoDAO;
-//import com.malalayousafzai.malala.model.Historico;
 import com.malalayousafzai.malala.model.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,17 +31,16 @@ public class ServiceVideoImpl implements IServiceVideo  {
         if(videoVerificacao.isPresent()) {
             Video videoConcluido = videoVerificacao.get();
             videoConcluido.setConcluido(true);
-            //Como pegar o id do cliente e inserir esse video na List<Video> videos desse cliente?.
-
-            //Historico  historico = new Historico();
-            //videoClassificado.setHistorico(historico);
-            //Historico historico = videoClassificado.getHistorico();
-            //historico.setVideos();
+            return videoDao.save(videoConcluido);
         }
         return null;
     }
 
-    //ESSE TRECHO AQUIIII!
+    public List<Video> listarVideosConcluidos(){
+        List<Video> videos = videoDao.findByConcluido();
+        return videos;
+    }
+
     @Override
     public Video classificar(Integer id, Video dados){
        Optional<Video> videoVerificacao = videoDao.findById(id);

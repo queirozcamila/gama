@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +37,13 @@ public class VideoController {
         return ResponseEntity.badRequest().build();
     }
 
-    @GetMapping("/{id}/concluido")
+    @GetMapping("/concluidos")
+    public List<Video> listarVideosConluidos(){
+        return serviceVideoImpl.listarVideosConcluidos();
+    }
+
+
+    @PutMapping("/{id}/concluido")
     public ResponseEntity<String> concluir(@PathVariable Integer id){
         Video resp = serviceVideoImpl.concluir(id);
         if(resp != null){
@@ -48,7 +53,7 @@ public class VideoController {
     }
 
 
-    @PutMapping ("/{id}")
+    @PutMapping ("/{id}/classificado")
     public ResponseEntity<String> classificar(@PathVariable Integer id, @RequestBody Video dados){
        Video resp = serviceVideoImpl.classificar(id, dados);
         if(resp != null){
