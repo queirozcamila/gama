@@ -1,7 +1,9 @@
 package com.malalayousafzai.malala.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.NamedQuery;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.util.List;
 
@@ -28,12 +31,17 @@ public class Cliente {
     @Column(name = "nome_usuario")
     private String nomeUsuario;
 
-    @ManyToMany
-    @JoinTable(name="historico", joinColumns =
-            {@JoinColumn(name="cliente_id")}, inverseJoinColumns =
-            {@JoinColumn(name = "video_id")})
-    private List<Video> videos;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("clientes")
+    private List<Historico> historicos;
 
+    public List<Historico> getHistoricos() {
+        return historicos;
+    }
+
+    public void setHistoricos(List<Historico> historicos) {
+        this.historicos = historicos;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -58,14 +66,6 @@ public class Cliente {
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
-    }
-
-    public List<Video> getVideos() {
-        return videos;
-    }
-
-    public void setVideos(List<Video> videos) {
-        this.videos = videos;
     }
 
     public Integer getId() {
