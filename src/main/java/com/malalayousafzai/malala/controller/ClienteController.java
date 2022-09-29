@@ -3,9 +3,9 @@ package com.malalayousafzai.malala.controller;
 import com.malalayousafzai.malala.controller.Dto.ClienteDto;
 import com.malalayousafzai.malala.controller.Dto.DetalhesClienteDto;
 import com.malalayousafzai.malala.model.Cliente;
-import com.malalayousafzai.malala.model.Video;
 import com.malalayousafzai.malala.service.ServiceClienteImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/clientes")
+
 public class ClienteController {
 
     @Autowired
@@ -51,7 +51,10 @@ public class ClienteController {
         return ResponseEntity.badRequest().build();
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping(value = "/cadastrar",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     public ResponseEntity<String> cadastrar(@RequestBody Cliente novo){
         Cliente resp = serviceClienteImpl.criarNovo(novo);
         if(resp != null){
@@ -68,16 +71,6 @@ public class ClienteController {
         }
         return ResponseEntity.badRequest().build();
     }
-
-//    @GetMapping("/{id}/videos")
-//    public List<Video> adicionaVideosConcluidos(@PathVariable Integer id){
-//        List<Video> videos = serviceClienteImpl.adicionaVideosNoCliente(id);
-//
-//        if(videos != null){
-//            return videos;
-//        }
-//        return null;
-//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> remover(@PathVariable Integer id){

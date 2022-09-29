@@ -2,8 +2,6 @@ package com.malalayousafzai.malala.service;
 
 import com.malalayousafzai.malala.DAO.ClienteDAO;
 import com.malalayousafzai.malala.model.Cliente;
-import com.malalayousafzai.malala.model.Historico;
-import com.malalayousafzai.malala.model.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -23,9 +21,6 @@ public class ServiceClienteImpl implements IServiceCliente {
 
     @Override
     public Cliente criarNovo(Cliente novo){
-         for (Historico historico: novo.getHistoricos()){
-             historico.setCliente(novo);
-         }
         if(novo.getNome() != null){
             return clienteDao.save(novo);
         }
@@ -57,13 +52,6 @@ public class ServiceClienteImpl implements IServiceCliente {
         }
         return null;
     }
-
-//    public List<Video> adicionaVideosNoCliente(Integer id){
-//         Optional<Cliente> cliente = clienteDao.findById(id);
-//
-//         return null;
-//
-//    }
 
     public void remover(Integer id){
         clienteDao.deleteById(id);

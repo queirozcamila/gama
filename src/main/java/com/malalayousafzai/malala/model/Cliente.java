@@ -29,17 +29,9 @@ public class Cliente {
     @Column(name = "nome_usuario")
     private String nomeUsuario;
 
-    //USA QUAL DOS DOIS ABAIXO??
-
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("cliente")
     private List<Historico> historicos = new ArrayList<>();
-
-//    @ManyToMany
-//    @JoinTable(name = "historico",
-//            joinColumns = @JoinColumn(name = "cliente_id"),
-//            inverseJoinColumns = @JoinColumn(name = "video_id"))
-//    private List<Video> videos;
 
     public List<Historico> getHistoricos() {
         return historicos;
@@ -48,15 +40,6 @@ public class Cliente {
     public void setHistoricos(List<Historico> historicos) {
         this.historicos = historicos;
     }
-
-//
-//    public List<Video> getVideos() {
-//        return videos;
-//    }
-//
-//    public void setVideos(List<Video> videos) {
-//        this.videos = videos;
-//    }
 
     @Override
     public boolean equals(Object obj) {

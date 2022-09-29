@@ -38,7 +38,7 @@ public class VideoController {
     }
 
     @GetMapping("/concluidos")
-    public List<Video> listarVideosConluidos(){
+    public List<Video> listarVideosConcluidos(){
         return serviceVideoImpl.listarVideosConcluidos();
     }
 
@@ -51,8 +51,6 @@ public class VideoController {
         }
         return ResponseEntity.badRequest().build();
     }
-
-
     @PutMapping ("/{id}/classificado")
     public ResponseEntity<String> classificar(@PathVariable Integer id, @RequestBody Video dados){
        Video resp = serviceVideoImpl.classificar(id, dados);
