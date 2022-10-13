@@ -77,4 +77,14 @@ public class ClienteController {
         serviceClienteImpl.remover(id);
         return ResponseEntity.ok().build();
     }
+
+    //Para uso de teste, nao tem a ver com a aplicacao em si
+    @PostMapping(value = "/retornar")
+    public ResponseEntity<String> retornar(@RequestBody String s){
+
+        if(s != null){
+            return ResponseEntity.ok(s);
+        }
+        return ResponseEntity.badRequest().build();
+    }
 }
